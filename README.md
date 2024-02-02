@@ -1,4 +1,5 @@
-> [!WARNING] This package is up and public, but currently broken due to [issue #1](https://github.com/KittyCAD/delouse/issues/2).
+> [!WARNING]
+> This package is up and public, but currently broken due to [issue #1](https://github.com/KittyCAD/delouse/issues/2).
 
 # Using `delouse`
 
