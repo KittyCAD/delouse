@@ -9,7 +9,7 @@ description = "delouse will expose opinionated debugging stubs most useful for t
 
 [dependencies]
 anyhow = "1.0.75"
-dropshot = { version = "0.9" }
+dropshot = { version = "0.10" }
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "time", "io-util"] }
 serde = "1.0"
 serde_json = "1.0"
