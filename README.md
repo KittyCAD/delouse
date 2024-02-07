@@ -1,6 +1,3 @@
-> [!WARNING]
-> This package is up and public, but currently broken due to [issue #1](https://github.com/KittyCAD/delouse/issues/2).
-
 # Using `delouse`
 
 First, edit your `Cargo.toml` to add the `delouse` crate as an optional
