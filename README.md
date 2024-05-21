@@ -1,7 +1,7 @@
 # Using `delouse`
 
 First, edit your `Cargo.toml` to add the `delouse` crate as an optional
-dependnecy, and add a new feature ("`debug`").
+dependency, and add a new feature ("`debug`").
 
 ```toml
 [dependencies]
