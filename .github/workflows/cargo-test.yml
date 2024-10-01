@@ -40,12 +40,3 @@ jobs:
         run: |
           cargo build --all
           cargo nextest run --all --test-threads=1 --no-fail-fast
-        env:
-            #- name: Upload to codecov.io
-            #uses: codecov/codecov-action@v3
-            #with:
-            #token: ${{secrets.CODECOV_TOKEN}}
-            # fail_ci_if_error: true
-            #flags: unittests
-            #verbose: true
-            # files: lcov.info
