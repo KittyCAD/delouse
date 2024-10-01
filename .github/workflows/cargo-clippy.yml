@@ -1,0 +1,55 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "**.rs"
+      - Cargo.toml
+      - Cargo.lock
+      - .github/workflows/cargo-clippy.yml
+      - "rust-toolchain"
+      - "rust-toolchain.toml"
+  pull_request:
+    paths:
+      - "**.rs"
+      - Cargo.toml
+      - Cargo.lock
+      - .github/workflows/cargo-clippy.yml
+      - "rust-toolchain"
+      - "rust-toolchain.toml"
+name: cargo clippy
+permissions:
+  contents: write
+jobs:
+  cargoclippy:
+    name: cargo clippy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install latest rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.7.3
+
+      - name: Check workflow permissions
+        id: check_permissions
+        uses: scherermichael-oss/action-has-permission@1.0.6
+        with:
+          required-permission: write
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - if: steps.check_permissions.outputs.has-permission
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all
+      - name: Run clippy manually without annotations
+        if: ${{ !steps.check_permissions.outputs.has-permission }}
+        run: cargo clippy --all --all-features -- -D warnings
