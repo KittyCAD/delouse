@@ -1,2 +1,7 @@
-[build]
+# build on linux
+[build.'cfg(target_os = "linux")']
 rustflags = ["--cfg", "tokio_unstable", "--cfg", "tokio_taskdump"]
+
+# build on macos
+[build.'cfg(target_os = "macos")']
+rustflags = []

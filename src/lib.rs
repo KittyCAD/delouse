@@ -5,8 +5,8 @@
 
 use anyhow::Result;
 use dropshot::{
-    endpoint, ApiDescription, ConfigDropshot, ConfigLogging, ConfigLoggingLevel, HttpError,
-    HttpResponseOk, HttpServerStarter, RequestContext,
+    endpoint, ApiDescription, ConfigLogging, ConfigLoggingLevel, HttpError, HttpResponseOk,
+    HttpServerStarter, RequestContext,
 };
 use schemars::JsonSchema;
 use serde::Serialize;
@@ -21,8 +21,6 @@ use os_linux as os;
 
 #[cfg(target_os = "macos")]
 mod os_macos;
-#[cfg(target_os = "macos")]
-use os_macos as os;
 
 struct Context {
     schema: serde_json::Value,
@@ -112,8 +110,10 @@ pub fn init() -> Result<()> {
 
     let bind_address = "127.0.0.1:7132";
 
-    let mut config_dropshot: ConfigDropshot = Default::default();
-    config_dropshot.bind_address = bind_address.parse().unwrap();
+    let config_dropshot = dropshot::ConfigDropshot {
+        bind_address: bind_address.parse().unwrap(),
+        ..Default::default()
+    };
 
     let server = HttpServerStarter::new(&config_dropshot, api, api_context, &log)
         .unwrap()
