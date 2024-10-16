@@ -35,7 +35,7 @@ jobs:
           components: rustfmt, clippy
 
       - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.3
+        uses: Swatinem/rust-cache@v2.7.5
 
       - name: Run clippy
         run: cargo clippy --all --tests --all-features --examples --benches
