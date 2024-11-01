@@ -8,7 +8,7 @@ repository = "https://github.com/kittycad/delouse"
 description = "delouse will expose opinionated debugging stubs most useful for tokio based async programs"
 
 [dependencies]
-anyhow = "1.0.91"
+anyhow = "1.0.92"
 clap = { version = "4", features = ["cargo"] }
 dropshot = { version = "0.12" }
 elf = "0.7"
