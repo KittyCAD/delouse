@@ -5,10 +5,6 @@ use serde::Serialize;
 
 use crate::Context;
 
-/// Request a coredump be taken of the process.
-#[derive(Clone, Debug, PartialEq, JsonSchema, Serialize)]
-struct CoredumpRequest {}
-
 /// Response from a coredump (you'll never see one of these), since if
 /// a coredump is successful the process will be killed, and if not
 /// there should be an HTTP Error returned.
