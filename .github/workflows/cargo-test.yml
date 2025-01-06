@@ -39,4 +39,4 @@ jobs:
         shell: bash
         run: |
           cargo build --all
-          cargo nextest run --all --test-threads=1 --no-fail-fast
+          cargo test --all
