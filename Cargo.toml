@@ -10,7 +10,7 @@ description = "delouse will expose opinionated debugging stubs most useful for t
 [dependencies]
 anyhow = "1.0.95"
 clap = { version = "4", features = ["cargo"] }
-dropshot = { version = "0.12" }
+dropshot = { version = "0.16" }
 elf = "0.7"
 libc = "0.2"
 schemars = "0.8"
