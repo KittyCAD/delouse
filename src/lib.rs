@@ -5,8 +5,8 @@
 
 use anyhow::Result;
 use dropshot::{
-    endpoint, ApiDescription, ConfigLogging, ConfigLoggingLevel, HttpError, HttpResponseOk,
-    HttpServerStarter, RequestContext,
+    ApiDescription, ConfigDropshot, ConfigLogging, ConfigLoggingLevel, HttpError, HttpResponseOk,
+    HttpServerStarter, RequestContext, endpoint,
 };
 use schemars::JsonSchema;
 use serde::Serialize;

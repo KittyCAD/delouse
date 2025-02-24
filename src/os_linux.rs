@@ -1,5 +1,5 @@
 use anyhow::Result;
-use dropshot::{endpoint, HttpError, HttpResponseOk, RequestContext};
+use dropshot::{HttpError, HttpResponseOk, RequestContext, endpoint};
 use schemars::JsonSchema;
 use serde::Serialize;
 
