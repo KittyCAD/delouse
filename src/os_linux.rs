@@ -5,6 +5,10 @@ use serde::Serialize;
 
 use crate::Context;
 
+// /// Request a coredump be taken of the process.
+// #[derive(Clone, Debug, PartialEq, JsonSchema, Serialize)]
+// struct CoredumpRequest {}
+
 /// Response from a coredump (you'll never see one of these), since if
 /// a coredump is successful the process will be killed, and if not
 /// there should be an HTTP Error returned.
@@ -139,9 +143,8 @@ pub(crate) async fn elf_info(
 
     let comments_vec = comments_bytes
         .split(|ch| *ch == 0x00)
-        .into_iter()
         .map(|bytes| String::from_utf8(bytes.into()).unwrap())
-        .filter(|str| str.len() > 0)
+        .filter(|str| !str.is_empty())
         .collect();
 
     Ok(HttpResponseOk(ElfInfoResponse {
