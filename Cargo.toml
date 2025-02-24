@@ -1,11 +1,14 @@
 [package]
 name = "delouse"
 version = "0.1.7"
-edition = "2021"
+edition = "2024"
 license = "MIT"
 authors = ["Paul Tagliamonte <paul@zoo.dev>"]
 repository = "https://github.com/kittycad/delouse"
 description = "delouse will expose opinionated debugging stubs most useful for tokio based async programs"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_taskdump)', 'cfg(tokio_unstable)'] }
 
 [dependencies]
 anyhow = "1.0.95"
@@ -17,6 +20,3 @@ schemars = "0.8"
 serde = "1.0"
 serde_json = "1.0"
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "net", "time", "io-util"] }
-
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_unstable, tokio_taskdump)'] }

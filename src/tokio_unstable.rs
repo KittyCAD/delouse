@@ -1,5 +1,5 @@
 use anyhow::Result;
-use dropshot::{endpoint, HttpError, HttpResponseOk, RequestContext};
+use dropshot::{HttpError, HttpResponseOk, RequestContext, endpoint};
 use schemars::JsonSchema;
 use serde::Serialize;
 use std::{io::Write, time::Duration};
@@ -49,9 +49,9 @@ pub(super) async fn stacktrace_tokio(
                 }
                 Err(_) => {
                     // send nil
-                    let _ = write!(
+                    let _ = writeln!(
                         &mut bytes,
-                        "Internal error: tokio was unable to complete a backtrace\n"
+                        "Internal error: tokio was unable to complete a backtrace"
                     );
                     let _ = stack_tx.send(bytes.clone());
                 }
@@ -64,13 +64,10 @@ pub(super) async fn stacktrace_tokio(
             // message and we can return.
 
             std::thread::sleep(Duration::from_secs(1));
-            match ack_rx.try_recv() {
-                Ok(_) => {
-                    // User got the bytes via the HTTP response,
-                    // so we're good to unwind here.
-                    return;
-                }
-                _ => {}
+            if ack_rx.try_recv().is_ok() {
+                // User got the bytes via the HTTP response,
+                // so we're good to unwind here.
+                return;
             }
 
             // If we're here, I'm sorry to report that tokio's runtime
@@ -91,7 +88,7 @@ pub(super) async fn stacktrace_tokio(
         Ok(bytes) => {
             let _ = ack_tx.send(true);
             Ok(HttpResponseOk(StacktraceTokioResponse {
-                stacktrace: format!("{}", String::from_utf8(bytes).unwrap()),
+                stacktrace: String::from_utf8(bytes).unwrap().to_string(),
             }))
         }
         Err(e) => Err(HttpError::for_internal_error(format!(

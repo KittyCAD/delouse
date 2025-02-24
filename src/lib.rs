@@ -5,8 +5,8 @@
 
 use anyhow::Result;
 use dropshot::{
-    endpoint, ApiDescription, ConfigLogging, ConfigLoggingLevel, HttpError, HttpResponseOk,
-    HttpServerStarter, RequestContext,
+    ApiDescription, ConfigDropshot, ConfigLogging, ConfigLoggingLevel, HttpError, HttpResponseOk,
+    HttpServerStarter, RequestContext, endpoint,
 };
 use schemars::JsonSchema;
 use serde::Serialize;
@@ -110,7 +110,7 @@ pub fn init() -> Result<()> {
 
     let bind_address = "127.0.0.1:7132";
 
-    let config_dropshot = dropshot::ConfigDropshot {
+    let config_dropshot = ConfigDropshot {
         bind_address: bind_address.parse().unwrap(),
         ..Default::default()
     };
