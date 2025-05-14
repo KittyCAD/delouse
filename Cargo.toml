@@ -14,7 +14,7 @@ unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_taskdump)', 'cfg(tok
 anyhow = "1.0.97"
 clap = { version = "4", features = ["cargo"] }
 dropshot = { version = "0.12" }
-elf = "0.7"
+elf = "0.8"
 libc = "0.2"
 schemars = "0.8"
 serde = "1.0"
