@@ -11,7 +11,7 @@ description = "delouse will expose opinionated debugging stubs most useful for t
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tokio_taskdump)', 'cfg(tokio_unstable)'] }
 
 [dependencies]
-anyhow = "1.0.98"
+anyhow = "1.0.99"
 clap = { version = "4", features = ["cargo"] }
 dropshot = { version = "0.12" }
 elf = "0.8"
