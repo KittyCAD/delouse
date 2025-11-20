@@ -98,7 +98,11 @@ pub fn init() -> Result<()> {
         // macos specific endpoints here
     }
 
-    let definition = api.openapi("debugd http interface", clap::crate_version!());
+    let definition = api.openapi(
+        "debugd http interface",
+        semver::Version::parse(clap::crate_version!())
+            .expect("Crate version should be valid semver"),
+    );
     let api_context = Context {
         schema: definition.json().unwrap(),
     };
