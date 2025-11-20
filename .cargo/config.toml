@@ -4,4 +4,4 @@ rustflags = ["--cfg", "tokio_unstable", "--cfg", "tokio_taskdump"]
 
 # build on macos
 [target.'cfg(target_os = "macos")']
-rustflags = []
+rustflags = ["--cfg", "tokio_unstable", "--cfg", "tokio_taskdump"]
